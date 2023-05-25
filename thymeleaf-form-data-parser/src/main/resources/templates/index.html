@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Person data</title>
+</head>
+<body>
+<form method="post">
+    <p>
+        <label for="firstNameInput">First name</label>
+        <input id="firstNameInput" name="firstName" th:value="${person.firstName}">
+    </p>
+
+    <p>
+        <label for="surnameInput">Surname</label>
+        <input id="surnameInput" name="surname" th:value="${person.surname}">
+    </p>
+
+    <p>
+        <label for="dateOfBirthInput">Date of birth</label>
+        <input id="dateOfBirthInput" type="date" name="dateOfBirth" th:field="${person.dateOfBirth}">
+    </p>
+
+    <div th:each="adresse,iter : ${person.addressList}">
+        <label for="streetInput">Street</label>
+        <input id="streetInput" th:name="|addressList[${iter.index}].street|" th:value="${adresse.street}">
+        <label for="zipInput">ZIP</label>
+        <input id="zipInput" th:name="|addressList[${iter.index}].zip|" th:value="${adresse.zip}">
+        <label for="townInput">Town</label>
+        <input id="townInput" th:name="|addressList[${iter.index}].town|" th:value="${adresse.town}">
+    </div>
+
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>
